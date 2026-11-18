@@ -1,0 +1,38 @@
+
+name: Portfolio PR Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  pr-check:
+    name: Pull Request Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check JavaScript syntax
+        run: node --check js/main.js
+
+      - name: Check HTML
+        run: |
+          npm install --global html-validate
+          html-validate index.html
+
+      - name: Install CSS Validator
+        run: npm install --no-save --no-package-lock stylelint stylelint-config-standard
+
+      - name: Check CSS
+        run: npx stylelint "css/**/*.css" --config .stylelintrc.json
