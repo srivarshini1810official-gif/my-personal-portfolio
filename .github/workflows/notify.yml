@@ -1,0 +1,53 @@
+
+name: Deployment Notification
+
+on:
+  workflow_run:
+    workflows: ["Portfolio Deployment"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify on Success
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Deployment successful!"
+          echo "Site live at:"
+          echo "https://srivarshini1810official-gif.github.io/my-personal-portfolio/"
+
+          echo "## Deployment Successful! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "Your portfolio has been deployed successfully." >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "$SLACK_WEBHOOK_URL" ]; then
+            curl -X POST \
+              -H 'Content-type: application/json' \
+              --data '{"text":"Portfolio deployment successful! 🚀"}' \
+              "$SLACK_WEBHOOK_URL"
+          else
+            echo "Slack webhook not configured. GitHub notification summary created."
+          fi
+
+      - name: Notify on Failure
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          echo "Deployment FAILED! Check the Actions tab."
+
+          echo "## Deployment Failed! :x:" >> $GITHUB_STEP_SUMMARY
+          echo "Please check the deployment workflow logs." >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "$SLACK_WEBHOOK_URL" ]; then
+            curl -X POST \
+              -H 'Content-type: application/json' \
+              --data '{"text":"Portfolio deployment failed. Please check GitHub Actions."}' \
+              "$SLACK_WEBHOOK_URL"
+          else
+            echo "Slack webhook not configured. GitHub notification summary created."
+          fi
