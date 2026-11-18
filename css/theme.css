@@ -1,0 +1,78 @@
+
+/* =================================
+   PERSONAL PORTFOLIO - THEME COLORS
+   ================================= */
+
+/* DEFAULT THEME - BLACK & GOLD */
+:root {
+    --bg-primary: #171714;
+    --bg-secondary: #22221e;
+    --bg-card: #292820;
+
+    --text-primary: #f4f0e8;
+    --text-secondary: #c9c3b7;
+    --text-muted: #928b7d;
+
+    --accent-primary: #d7c59b;
+    --accent-secondary: #b49a68;
+    --accent-color: #d7c59b;
+
+    --border-color: #514a3d;
+
+    --font-heading: 'Georgia', serif;
+    --font-body: 'Arial', sans-serif;
+
+    --section-padding: 100px 8%;
+    --transition-smooth: 0.3s ease;
+}
+
+/* DARK THEME */
+[data-theme="dark"] {
+    --bg-primary: #101010;
+    --bg-secondary: #191919;
+    --bg-card: #242424;
+
+    --text-primary: #ffffff;
+    --text-secondary: #c5c5c5;
+    --text-muted: #888888;
+
+    --accent-primary: #c5a572;
+    --accent-secondary: #a88955;
+    --accent-color: #c5a572;
+
+    --border-color: #383838;
+}
+
+/* LIGHT THEME - WARM IVORY */
+[data-theme="light"] {
+    --bg-primary: #f5f0e7;
+    --bg-secondary: #ebe3d6;
+    --bg-card: #fffaf2;
+
+    --text-primary: #29251f;
+    --text-secondary: #62594d;
+    --text-muted: #8b8072;
+
+    --accent-primary: #9b7845;
+    --accent-secondary: #785b32;
+    --accent-color: #9b7845;
+
+    --border-color: #d8cbbb;
+}
+
+/* MIDNIGHT THEME - DEEP BLUE */
+[data-theme="midnight"] {
+    --bg-primary: #101827;
+    --bg-secondary: #19263a;
+    --bg-card: #202e43;
+
+    --text-primary: #f0f3f8;
+    --text-secondary: #aebbd0;
+    --text-muted: #8798b2;
+
+    --accent-primary: #c5a9e8;
+    --accent-secondary: #a78bd0;
+    --accent-color: #c5a9e8;
+
+    --border-color: #34435b;
+}
