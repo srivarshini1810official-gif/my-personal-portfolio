@@ -1,0 +1,37 @@
+
+name: Portfolio CI
+
+# When should this workflow run?
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate:
+    name: Validate Portfolio
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Step 3: Install HTML validator
+      - name: Install HTML Validator
+        run: npm install --global html-validate
+
+      # Step 4: Validate HTML
+      - name: Validate HTML
+        run: html-validate index.html
