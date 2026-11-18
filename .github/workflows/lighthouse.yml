@@ -1,0 +1,29 @@
+
+name: Portfolio Lighthouse Audit
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Run Lighthouse Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Audit portfolio using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://srivarshini1810official-gif.github.io/my-personal-portfolio/
+          runs: 1
+          uploadArtifacts: true
