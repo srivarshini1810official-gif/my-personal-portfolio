@@ -35,3 +35,6 @@ jobs:
       # Step 4: Validate HTML
       - name: Validate HTML
         run: html-validate index.html
+        
+      - name: Validate JavaScript
+        run: node --check js/main.js
