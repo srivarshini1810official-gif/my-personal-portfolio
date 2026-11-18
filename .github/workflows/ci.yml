@@ -35,6 +35,12 @@ jobs:
       # Step 4: Validate HTML
       - name: Validate HTML
         run: html-validate index.html
-        
+
       - name: Validate JavaScript
         run: node --check js/main.js
+      
+      - name: Install CSS Validator
+        run: npm install --no-save --no-package-lock stylelint stylelint-config-standard
+
+      - name: Validate CSS
+        run: npx stylelint "css/**/*.css" --config .stylelintrc.json
